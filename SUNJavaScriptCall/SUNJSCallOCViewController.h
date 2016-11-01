@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface SUNJSCallOCViewController : UIViewController
+@property (nonatomic, strong) UIWebView *webView;
 
 @end
 

@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "SUNJSCallOCViewController.h"
+#import "SUNOCCallJSViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UITabBarControllerDelegate>
 
 @end
 
@@ -17,6 +19,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    SUNJSCallOCViewController *JSCallOCViewController = [[SUNJSCallOCViewController alloc] init];
+    JSCallOCViewController.tabBarItem.title = @"JS调用OC";
+    JSCallOCViewController.tabBarItem.image = [[UIImage imageNamed:@"candy.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+    SUNOCCallJSViewController *OCCallJSViewController = [[SUNOCCallJSViewController alloc] init];
+    OCCallJSViewController.tabBarItem.title = @"OC调用JS";
+    OCCallJSViewController.tabBarItem.image = [[UIImage imageNamed:@"ghost.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.delegate = self;
+    tabBarController.viewControllers = [NSArray arrayWithObjects:OCCallJSViewController, JSCallOCViewController, nil];
+
+    self.window.rootViewController = tabBarController;
+    
+    [self.window makeKeyAndVisible];
+
+    
     return YES;
 }
 
